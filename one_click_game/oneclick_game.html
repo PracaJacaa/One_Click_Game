@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>gra w zestrzel statek</title>
+        <style>
+            #ship {
+                position: absolute;
+                left: 0px;
+            }
+        </style>
+        
+    </head>
+    <a style="color:  Red;" id="punkty">Punkty 0 </a>
+    <body background="Gwiasmier.png" >
+      <div>
+        <img src="erik-frobom-0a23aa36014013-570c507b637f5.gif" id="ship" width="250px" length="250px" onclick="fukaj(1)">
+        <img src="Przegrales.png" id="lose" width="800px" length="700px" style="display: none;" style="position: absolute centrer;" >
+      </div>
+  <script>
+    var punkty = document.getElementById("punkty"), 
+    count = 0;
+    //Punkty 
+  var statek = document.getElementById("ship");
+  var zacznijczas = new Date().getTime(); //Metoda JS która przechowuje skonkrętny moment w czasie i zwraca w ms 
+  var statek1 = function() {
+      var terazczas = new Date().getTime();    //moment gdzie funkcja się zaczyzna (czas)
+      var mineło = ((terazczas - zacznijczas)/1000); //sledzi moment startu naszej funkcji do naszego aktualnego czasu i dzieli przez 1000 bo chcemy sekundy a nie ms a jedna sec to 1000 ms 
+  var nowalewa = mineło * 200; 
+  statek.style.left = nowalewa + "px";
+  if(nowalewa<1000){
+  window.requestAnimationFrame(statek1);
+  }
+};
+statek1();
+function fukaj(){
+        document.getElementById("ship").src = "Booom.gif"
+         var opoznienie= function opoznienie(){
+         alert("Wygrałeś")
+         window.location.reload()
+         }
+         setTimeout(opoznienie,50);
+        count += 1;
+    punkty.innerHTML = "Punkty " + count;
+        }
+    var przegrac = function lose(){
+      document.getElementById("lose").style.display="block";
+      var opoznienie2 = function opoznienie2(){
+        alert("Przegraleś")
+        window.location.reload()
+      }
+      setTimeout(opoznienie2,50);
+    }
+  setTimeout(przegrac,5000);
+  </script>
+    </body>
+</html>
